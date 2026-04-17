@@ -4,6 +4,34 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Swiftner Backgrounds</title>
+<link id="favicon" rel="icon" type="image/svg+xml" href="favicon.svg">
+<script>
+  // Favicon: Aurora-flavored animated gradient. Colours fixed to the Aurora
+  // palette (Blob2 extract); gradient origin + animation keyframes are random
+  // each load so every visit feels fresh while staying on brand.
+  (() => {
+    // Aurora base palette (darkest → brightest)
+    const p = ['#13194a', '#4E2894', '#8447FF', '#C4B1FF', '#ffffe8'];
+    const rand = (a, b) => Math.round(a + Math.random() * (b - a));
+    const cx1 = rand(10, 90), cy1 = rand(10, 90);
+    const cx2 = rand(10, 90), cy2 = rand(10, 90);
+    const cx3 = rand(10, 90), cy3 = rand(10, 90);
+    const svg =
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">' +
+      '<defs><radialGradient id="g" cx="' + cx1 + '%" cy="' + cy1 + '%" r="95%">' +
+      '<stop offset="0%" stop-color="' + p[4] + '"/>' +
+      '<stop offset="25%" stop-color="' + p[3] + '"/>' +
+      '<stop offset="55%" stop-color="' + p[2] + '"/>' +
+      '<stop offset="80%" stop-color="' + p[1] + '"/>' +
+      '<stop offset="100%" stop-color="' + p[0] + '"/>' +
+      '<animate attributeName="cx" values="' + cx1 + ';' + cx2 + ';' + cx3 + ';' + cx1 + '" dur="11s" repeatCount="indefinite"/>' +
+      '<animate attributeName="cy" values="' + cy1 + ';' + cy2 + ';' + cy3 + ';' + cy1 + '" dur="14s" repeatCount="indefinite"/>' +
+      '</radialGradient></defs>' +
+      '<rect width="32" height="32" rx="7" fill="url(#g)"/></svg>';
+    document.getElementById('favicon').href =
+      'data:image/svg+xml,' + encodeURIComponent(svg);
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">

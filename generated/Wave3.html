@@ -4,13 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Drift — Swiftner</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
 <style>
-  html,body { margin:0; height:100%; background:#bdc7ff; overflow:hidden;
+  html,body { margin:0; padding:0; width:100%; height:100%; background:#bdc7ff; overflow:hidden;
               font-family:'DM Mono', ui-monospace, monospace; color:#111827; }
-  canvas { display:block; width:100vw; height:100vh; }
+  canvas { position:fixed; top:0; left:0; right:0; bottom:0; width:100%; height:100%; display:block; }
 
   .controls { position:fixed; top:18px; left:18px; z-index:3; display:flex; gap:8px; align-items:center; }
   .controls > * { font-family:'DM Mono', ui-monospace, monospace; font-size:11px; font-weight:500;
@@ -75,11 +76,12 @@ const ctx = c.getContext('2d');
 const dpr = Math.min(devicePixelRatio || 1, 2);
 let W = 0, H = 0;
 function resize() {
-  W = Math.round(innerWidth * dpr);
-  H = Math.round(innerHeight * dpr);
+  // Read the canvas element's actual rendered size rather than viewport — this
+  // matches what the user sees when the canvas is position:fixed and fills the window.
+  const rect = c.getBoundingClientRect();
+  W = Math.round(rect.width * dpr);
+  H = Math.round(rect.height * dpr);
   c.width = W; c.height = H;
-  c.style.width = innerWidth + 'px';
-  c.style.height = innerHeight + 'px';
 }
 resize();
 addEventListener('resize', resize);

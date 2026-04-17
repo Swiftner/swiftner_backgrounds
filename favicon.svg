@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <radialGradient id="g" cx="30%" cy="70%" r="95%">
+      <stop offset="0%" stop-color="#ffffe8"/>
+      <stop offset="25%" stop-color="#C4B1FF"/>
+      <stop offset="55%" stop-color="#8447FF"/>
+      <stop offset="80%" stop-color="#4E2894"/>
+      <stop offset="100%" stop-color="#13194a"/>
+      <animate attributeName="cx" values="30%;80%;50%;30%" dur="11s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+      <animate attributeName="cy" values="70%;20%;85%;70%" dur="14s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+    </radialGradient>
+  </defs>
+  <rect width="32" height="32" rx="7" fill="url(#g)"/>
+</svg>
