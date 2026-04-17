@@ -132,6 +132,13 @@ const MESH = ({ grid, size, bg }) => {
 `;
 };
 
+// Human-facing names per asset, used in page titles and download filenames.
+const NAMES = {
+  Blob1: 'Dusk',   Blob2: 'Aurora', Blob3: 'Mist',
+  Wave1: 'Tide',   Wave2: 'Crest',  Wave3: 'Drift',
+  Mesh1: 'Nebula', Mesh2: 'Vapor',  Mesh3: 'Haze',
+};
+
 // ---- per-asset presets ----
 const PRESETS = {
   Blob1: { bg: data.Blob1.stops[0].fill, body: BLOB({
@@ -154,12 +161,13 @@ const PRESETS = {
 };
 
 function page(name, bg, body) {
+  const display = NAMES[name] || name;
   return `<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${name} · swiftner</title>
+<title>${display} — Swiftner</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
@@ -237,7 +245,7 @@ document.getElementById('dl').onclick = () => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = '${name}-' + c.width + 'x' + c.height + '.png';
+    a.download = '${display.toLowerCase()}-' + c.width + 'x' + c.height + '.png';
     a.click();
     URL.revokeObjectURL(url);
   }, 'image/png');

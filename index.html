@@ -59,22 +59,29 @@
 
 <script>
 const assets = [
-  { name: 'Blob1' }, { name: 'Blob2' }, { name: 'Blob3' },
-  { name: 'Mesh1' }, { name: 'Mesh2' }, { name: 'Mesh3' },
-  { name: 'Wave1' }, { name: 'Wave2' }, { name: 'Wave3' },
+  { key: 'Blob1', name: 'Dusk' },
+  { key: 'Blob2', name: 'Aurora' },
+  { key: 'Blob3', name: 'Mist' },
+  { key: 'Wave1', name: 'Tide' },
+  { key: 'Wave2', name: 'Crest' },
+  { key: 'Wave3', name: 'Drift' },
+  { key: 'Mesh1', name: 'Nebula' },
+  { key: 'Mesh2', name: 'Vapor' },
+  { key: 'Mesh3', name: 'Haze' },
 ];
 
 const grid = document.getElementById('grid');
 for (const a of assets) {
-  const file = a.name + '.svg';
+  const file = a.key + '.svg';
+  const dlName = a.name.toLowerCase() + '.svg';
   const card = document.createElement('a');
   card.className = 'card';
-  card.href = 'generated/' + a.name + '.html';
+  card.href = 'generated/' + a.key + '.html';
   card.innerHTML =
     '<img class="preview" src="' + file + '" alt="' + a.name + '" loading="lazy">' +
     '<div class="meta">' +
       '<span class="t">' + a.name + '</span>' +
-      '<a class="dl" href="' + file + '" download title="Download SVG" aria-label="Download SVG" onclick="event.stopPropagation()">' +
+      '<a class="dl" href="' + file + '" download="' + dlName + '" title="Download SVG" aria-label="Download SVG" onclick="event.stopPropagation()">' +
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>' +
       '</a>' +
     '</div>';
