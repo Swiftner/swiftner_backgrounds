@@ -40,8 +40,10 @@
   .preview { aspect-ratio:1/1; border:0; border-bottom:1px solid var(--line); background:#fff; width:100%; display:block; }
   .meta { padding:14px 16px; display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
   .t { font-size:14px; font-weight:600; color:var(--navy-950); letter-spacing:-0.005em; }
-  .dl { font-family:'DM Mono', ui-monospace, monospace; font-size:11px; color:var(--muted); letter-spacing:0.04em; text-transform:uppercase; }
-  .dl:hover { color:var(--purple); }
+  .dl { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:999px;
+        color:var(--muted); transition:color .15s, background .15s; }
+  .dl:hover { color:var(--purple); background:rgba(78,22,156,.08); }
+  .dl svg { width:16px; height:16px; display:block; }
   @media (max-width: 640px) {
     header { padding:28px 24px 18px; }
     main { padding:20px 24px 32px; }
@@ -52,7 +54,6 @@
 <body>
 <header>
   <h1>Swiftner Backgrounds</h1>
-  <span class="sub">Blob &middot; Mesh &middot; Wave</span>
 </header>
 <main id="grid"></main>
 
@@ -73,7 +74,9 @@ for (const a of assets) {
     '<img class="preview" src="' + file + '" alt="' + a.name + '" loading="lazy">' +
     '<div class="meta">' +
       '<span class="t">' + a.name + '</span>' +
-      '<a class="dl" href="' + file + '" download onclick="event.stopPropagation()">source</a>' +
+      '<a class="dl" href="' + file + '" download title="Download SVG" aria-label="Download SVG" onclick="event.stopPropagation()">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>' +
+      '</a>' +
     '</div>';
   grid.appendChild(card);
 }
