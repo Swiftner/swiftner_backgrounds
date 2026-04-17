@@ -6,8 +6,15 @@
 <title>Swiftner Backgrounds</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
 <style>
+  @font-face {
+    font-family: 'TT Trailers';
+    src: url('fonts/TT-Trailers.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+  }
   :root {
     --navy-950:#13194a;
     --indigo-950:#221b4b;
@@ -23,8 +30,8 @@
               font-family:'DM Sans', ui-sans-serif, system-ui, sans-serif; }
   a { color:var(--purple); text-decoration:none; }
   a:hover { color:var(--purple-hover); }
-  header { padding:40px 48px 24px; border-bottom:1px solid var(--line); display:flex; gap:10px 20px; align-items:baseline; flex-wrap:wrap; }
-  h1 { margin:0; font-family:'Playfair Display', Georgia, serif; font-weight:600; font-size:36px; letter-spacing:-0.01em; color:var(--navy-950); }
+  header { padding:48px 48px 28px; border-bottom:1px solid var(--line); display:flex; gap:10px 24px; align-items:baseline; flex-wrap:wrap; }
+  h1 { margin:0; font-family:'TT Trailers', Impact, 'Arial Black', sans-serif; font-weight:600; font-style:italic; font-size:56px; letter-spacing:-0.01em; color:var(--navy-950); line-height:1; }
   .sub { color:var(--muted); font-family:'DM Mono', ui-monospace, monospace; font-size:13px; letter-spacing:0.02em; text-transform:uppercase; }
   main { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:20px; padding:28px 48px 48px; }
   .card { background:#fff; border:1px solid var(--line); border-radius:10px; overflow:hidden; display:flex; flex-direction:column;
