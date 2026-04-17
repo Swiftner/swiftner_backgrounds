@@ -4,28 +4,32 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Blob3 · swiftner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
 <style>
   html,body { margin:0; height:100%; background:#bdc7ff; overflow:hidden;
-              color:#fff; font:11px ui-monospace,monospace; }
+              font-family:'DM Mono', ui-monospace, monospace; color:#111827; }
   canvas { display:block; width:100vw; height:100vh; }
 
-  .controls { position:fixed; top:16px; left:16px; z-index:3; display:flex; gap:6px; align-items:center; }
-  .controls > * { font:inherit; letter-spacing:.12em; text-transform:uppercase; font-size:10px; font-weight:600;
-                   height:28px; border-radius:999px; border:0; cursor:pointer; }
-  .controls a, .controls button { color:#fff; background:#111; padding:0 12px; text-decoration:none; display:inline-flex; align-items:center; }
-  .controls a:hover, .controls button:hover { background:#000; }
-  .controls select { color:#111; background:#fff; padding:0 10px; cursor:pointer; -webkit-appearance:none; appearance:none; padding-right:22px;
-                     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='6' viewBox='0 0 8 6'><path d='M0 0l4 6 4-6z' fill='%23111'/></svg>");
-                     background-repeat:no-repeat; background-position:right 8px center; }
-  button.toggle.on { background:#fff; color:#111; }
+  .controls { position:fixed; top:18px; left:18px; z-index:3; display:flex; gap:8px; align-items:center; }
+  .controls > * { font-family:'DM Mono', ui-monospace, monospace; font-size:11px; font-weight:500;
+                  letter-spacing:.04em; text-transform:uppercase;
+                  height:32px; border-radius:999px; border:0; cursor:pointer; transition:background .15s, color .15s; }
+  .controls a { color:#fff; background:#4E169C; padding:0 14px; display:inline-flex; align-items:center; text-decoration:none; }
+  .controls a:hover { background:#3d1280; }
+  .controls button { color:#4E169C; background:#fff; padding:0 14px; border:1px solid rgba(78,22,156,.25); }
+  .controls button:hover { background:#f5f1fb; }
+  button.toggle.on { background:#4E169C; color:#fff; border-color:#4E169C; }
 
   .peek { position:fixed; top:0; right:0; bottom:0; width:40vw; background:#bdc7ff;
           transform:translateX(100%); transition:transform .25s ease; z-index:2;
-          border-left:1px solid rgba(0,0,0,.2); }
+          border-left:1px solid rgba(0,0,0,.15); }
   .peek.show { transform:translateX(0); }
   .peek img { width:100%; height:100%; object-fit:cover; display:block; }
-  .peek .chip { position:absolute; top:16px; left:16px; letter-spacing:.12em; text-transform:uppercase;
-                font-size:10px; font-weight:600; color:#111; background:#fff; padding:6px 10px; border-radius:999px; }
+  .peek .chip { position:absolute; top:18px; left:18px; letter-spacing:.04em; text-transform:uppercase;
+                font-family:'DM Mono', ui-monospace, monospace; font-size:11px; font-weight:500;
+                color:#fff; background:#4E169C; padding:8px 12px; border-radius:999px; }
 </style>
 </head>
 <body>
