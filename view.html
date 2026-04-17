@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>swiftner svg · compare</title>
+<style>
+  body { margin: 0; background: #f6f5f0; font-family: ui-monospace, monospace; color: #111; }
+  header { padding: 20px 24px; border-bottom: 1px solid #ddd; display: flex; gap: 6px 16px; align-items: baseline; flex-wrap: wrap; }
+  h1 { margin: 0; font-size: 18px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .sub { color: #888; font-size: 12px; letter-spacing: 0.04em; }
+  .back { margin-left: auto; font-size: 12px; color: #666; text-decoration: none; letter-spacing: 0.04em; }
+  .back:hover { color: #111; }
+  main { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; padding: 24px; }
+  .panel { background: #fff; border: 1px solid #ddd; display: flex; flex-direction: column; }
+  .panel h2 { margin: 0; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666; padding: 10px 14px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .panel h2 .size { color: #aaa; font-weight: 400; }
+  .frame { aspect-ratio: 1/1; width: 100%; display: block; border: 0; background: #fff; }
+  @media (max-width: 960px) {
+    main { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1 id="title">—</h1>
+  <span class="sub">cleaned vs original</span>
+  <a class="back" href="index.html">&larr; all assets</a>
+</header>
+<main>
+  <section class="panel">
+    <h2><span>Generated</span><span class="size" id="size-gen">—</span></h2>
+    <object class="frame" id="img-gen" type="image/svg+xml"></object>
+  </section>
+  <section class="panel">
+    <h2><span>Cleaned</span><span class="size" id="size-new">—</span></h2>
+    <img class="frame" id="img-new" alt="cleaned">
+  </section>
+  <section class="panel">
+    <h2><span>Original</span><span class="size" id="size-old">—</span></h2>
+    <img class="frame" id="img-old" alt="original">
+  </section>
+</main>
+<script>
+const params = new URLSearchParams(location.search);
+const name = params.get('file') || 'Blob1';
+const file = name + '.svg';
+document.getElementById('title').textContent = name;
+document.title = 'swiftner svg · ' + name;
+
+// <object> preserves SMIL animations; <img> would freeze them.
+document.getElementById('img-gen').data = 'generated/' + file;
+document.getElementById('img-new').src = file;
+document.getElementById('img-old').src = 'originals/' + file;
+
+async function showSize(url, el) {
+  try {
+    const r = await fetch(url, { method: 'HEAD' });
+    const b = Number(r.headers.get('content-length') || 0);
+    if (!b) return;
+    const kb = b / 1024;
+    el.textContent = kb > 1024 ? (kb / 1024).toFixed(2) + ' MB' : kb.toFixed(1) + ' KB';
+  } catch {}
+}
+showSize('generated/' + file, document.getElementById('size-gen'));
+showSize(file, document.getElementById('size-new'));
+showSize('originals/' + file, document.getElementById('size-old'));
+</script>
+</body>
+</html>

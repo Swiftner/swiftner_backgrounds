@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>swiftner svg</title>
+<style>
+  body { margin: 0; background: #f6f5f0; font-family: ui-monospace, monospace; color: #111; }
+  header { padding: 20px 24px; border-bottom: 1px solid #ddd; display: flex; gap: 6px 16px; align-items: baseline; flex-wrap: wrap; }
+  h1 { margin: 0; font-size: 18px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .sub { color: #888; font-size: 12px; letter-spacing: 0.04em; }
+  main { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; padding: 24px; }
+  .card { background: #fff; border: 1px solid #ddd; display: flex; flex-direction: column; text-decoration: none; color: inherit; }
+  .card:hover { border-color: #888; }
+  .preview { aspect-ratio: 1/1; border: 0; border-bottom: 1px solid #eee; background: #fff; width: 100%; display: block; }
+  .meta { padding: 12px 14px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .t { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; }
+  .dl { font-size: 11px; color: #888; text-decoration: none; letter-spacing: 0.04em; }
+  .dl:hover { color: #111; }
+</style>
+</head>
+<body>
+<header>
+  <h1>swiftner svg</h1>
+  <span class="sub">blob &middot; mesh &middot; wave</span>
+</header>
+<main id="grid"></main>
+
+<script>
+const assets = [
+  { name: 'Blob1' }, { name: 'Blob2' }, { name: 'Blob3' },
+  { name: 'Mesh1' }, { name: 'Mesh2' }, { name: 'Mesh3' },
+  { name: 'Wave1' }, { name: 'Wave2' }, { name: 'Wave3' },
+];
+
+const grid = document.getElementById('grid');
+for (const a of assets) {
+  const file = a.name + '.svg';
+  const card = document.createElement('a');
+  card.className = 'card';
+  card.href = 'generated/' + a.name + '.html';
+  card.innerHTML =
+    '<img class="preview" src="' + file + '" alt="' + a.name + '" loading="lazy">' +
+    '<div class="meta">' +
+      '<span class="t">' + a.name + '</span>' +
+      '<a class="dl" href="' + file + '" download onclick="event.stopPropagation()">source</a>' +
+    '</div>';
+  grid.appendChild(card);
+}
+</script>
+</body>
+</html>
