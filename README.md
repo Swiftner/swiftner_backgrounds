@@ -1,15 +1,33 @@
-# swiftner_backgrounds
+# Swiftner Backgrounds
 
-Brand-asset SVGs for [swiftner.com](https://swiftner.com), reconstructed as lightweight animated canvas generators.
+Animated canvas brand backgrounds for [swiftner.com](https://swiftner.com).
 
-- **9 assets** — three families (`Blob`, `Wave`, `Mesh`), each in three palette variants (`deep`, `mid`, `light`).
-- **Full-bleed animated canvases** in `generated/` — each is a standalone HTML page with its own JS generator, no dependencies.
-- **Originals preserved** in `originals/` — the raw Adobe Illustrator exports.
-- **Cleaned SVGs** at the project root — svgo-optimized, visually identical to the originals.
+**Live:** [swiftner.github.io/swiftner_backgrounds](https://swiftner.github.io/swiftner_backgrounds/)
 
-## Live
+Nine brand assets reconstructed from their Adobe Illustrator exports as self-contained, animated canvas generators — each page is a single HTML file with inline JS, no build step at runtime, no dependencies.
 
-[GitHub Pages site](https://swiftner.github.io/swiftner_backgrounds/) — click any tile to open its animated generator.
+## What's here
+
+- **`generated/`** — 9 standalone HTML pages, one per asset. Each:
+  - Full-viewport `<canvas>` animating via `requestAnimationFrame`
+  - `Download PNG` (captures the live canvas at its current pixel size)
+  - `Compare` toggle that slides in the original SVG for side-by-side reference
+  - Swiftner-themed controls (DM Mono pills, `#4E169C` purple)
+- **`originals/`** — the raw Adobe exports (kept for reference / the Compare panel)
+- **`*.svg`** at repo root — svgo-cleaned thumbnails used in the index grid
+- **`index.html`** — tile grid linking to each generator (Playfair Display title, olive/navy palette)
+
+## Asset families
+
+Three techniques, three palette variants each:
+
+| family | technique | palette variants |
+|---|---|---|
+| **Blob** | Adobe-style giant-circle stack along an animated cubic Bezier trajectory | deep · mid · light |
+| **Wave** | 400 wavy Adobe paths stacked; whole set drifts with translate + rotate + scale wobble | deep · mid · light |
+| **Mesh** | 32×32 color grid sampled from the PNG, bilinearly upscaled with blur; UV pans | deep · mid · light |
+
+Palettes derived from `swiftner.com` CSS — navy `#13194a`, purple `#4E169C` / `#8447FF`, olive `#ffffe8`.
 
 ## Build
 
@@ -18,20 +36,21 @@ node extract.mjs      # sample circle coords / path data / mesh grids from origi
 node generate.mjs     # emit the 9 animated HTML pages into generated/
 ```
 
-Re-run `generate.mjs` after editing presets.
+Re-run `generate.mjs` after editing presets in the script. Re-run `extract.mjs` if `originals/` changes.
 
-## Layout
+## Repo layout
 
-| file | what |
-|---|---|
-| `index.html` | tile grid, links to each generator |
-| `generated/*.html` | self-contained canvas generators (one per asset) |
-| `originals/*.svg` | raw Adobe exports |
-| `*.svg` (root) | svgo-cleaned versions used as thumbnails |
-| `extract.mjs` | parses originals/ into `extracted.json` |
-| `generate.mjs` | renders `extracted.json` into `generated/*.html` |
+```
+├── index.html              # tile grid
+├── generated/              # 9 animated canvas pages
+├── originals/              # raw Adobe SVGs
+├── *.svg                   # svgo-cleaned thumbnails
+├── extract.mjs             # originals/ → extracted.json
+├── generate.mjs            # extracted.json → generated/*.html
+├── extracted.json          # checked in; saves setup for anyone cloning
+└── svgo.config.js          # config used to clean the thumbnails
+```
 
-Each generator page has:
-- full-viewport canvas
-- size selector + **Download PNG** button (720 / 1080 / 1440 / 2160 / 4096)
-- **Compare** toggle that slides in the original SVG from the right
+## Stack
+
+Pure vanilla canvas + ES modules. DM Sans / DM Mono / Playfair Display via Google Fonts. No framework, no bundler, no runtime dependencies.
