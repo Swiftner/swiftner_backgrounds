@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>swiftner-bg — embed test</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@500;700&display=swap">
+<style>
+  :root { --ink: #13194a; --pop: #4E169C; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #f7f5ee; font-family: 'DM Sans', system-ui, sans-serif; color: var(--ink); }
+
+  header { padding: 64px 48px 24px; }
+  header h1 { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 8px; }
+  header p { font-family: 'DM Mono', monospace; font-size: 13px; color: #555; margin: 0; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 24px 48px 64px; }
+
+  .card {
+    aspect-ratio: 4 / 3; border-radius: 16px; overflow: hidden;
+    padding: 24px; display: flex; align-items: flex-end;
+    color: #fff;
+  }
+  .card .label {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+    background: rgba(0,0,0,.35); backdrop-filter: blur(6px);
+    padding: 6px 10px; border-radius: 999px;
+  }
+
+  footer { padding: 32px 48px 80px; font-family: 'DM Mono', monospace; font-size: 12px; color: #555; border-top: 1px solid #e5e1d3; }
+  code { background: #ece7d8; padding: 2px 6px; border-radius: 4px; font-size: 11.5px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>swiftner-bg</h1>
+  <p>Nine animated canvas backgrounds — drop in by attribute, pay only for what you use.</p>
+</header>
+
+<div class="grid">
+  <div class="card" data-swiftner-bg="dusk"><span class="label">dusk</span></div>
+  <div class="card" data-swiftner-bg="aurora"><span class="label">aurora</span></div>
+  <div class="card" data-swiftner-bg="mist"><span class="label">mist</span></div>
+  <div class="card" data-swiftner-bg="tide"><span class="label">tide</span></div>
+  <div class="card" data-swiftner-bg="crest"><span class="label">crest</span></div>
+  <div class="card" data-swiftner-bg="drift"><span class="label">drift</span></div>
+  <div class="card" data-swiftner-bg="nebula"><span class="label">nebula</span></div>
+  <div class="card" data-swiftner-bg="vapor"><span class="label">vapor</span></div>
+  <div class="card" data-swiftner-bg="haze"><span class="label">haze</span></div>
+</div>
+
+<footer>
+  Each card above has a single attribute: <code>&lt;div data-swiftner-bg="nebula"&gt;</code>.
+  The embed script finds them, injects a canvas, and starts a 15fps rAF loop per card.
+  Multi-instance per-page works because state is isolated per mount.
+</footer>
+
+<script src="./dist/embed.min.js" defer></script>
+</body>
+</html>

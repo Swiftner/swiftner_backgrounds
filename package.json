@@ -1,0 +1,36 @@
+{
+  "name": "@swiftner/backgrounds",
+  "version": "0.1.0",
+  "description": "Nine animated canvas backgrounds — drop into any page by attribute, or import per-asset for tree-shaking.",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://swiftner.github.io/swiftner_backgrounds/",
+  "repository": "github:Swiftner/swiftner_backgrounds",
+  "files": ["src", "dist", "README.md"],
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "exports": {
+    ".":        "./src/index.js",
+    "./mount":  "./src/core.js",
+    "./dusk":   "./src/assets/dusk.js",
+    "./aurora": "./src/assets/aurora.js",
+    "./mist":   "./src/assets/mist.js",
+    "./tide":   "./src/assets/tide.js",
+    "./crest":  "./src/assets/crest.js",
+    "./drift":  "./src/assets/drift.js",
+    "./nebula": "./src/assets/nebula.js",
+    "./vapor":  "./src/assets/vapor.js",
+    "./haze":   "./src/assets/haze.js",
+    "./embed":  "./dist/embed.min.js"
+  },
+  "scripts": {
+    "extract":  "node scripts/extract.js",
+    "pages":    "node scripts/generate-pages.js",
+    "build":    "node scripts/build-embed.js",
+    "serve":    "python3 -m http.server 8766"
+  },
+  "devDependencies": {
+    "esbuild": "^0.23.0"
+  },
+  "keywords": ["canvas", "background", "animation", "swiftner"]
+}
